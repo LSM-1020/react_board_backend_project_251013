@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,17 +23,18 @@ import jakarta.servlet.http.HttpServletResponse;
 @EnableWebSecurity //모든 요청 url이 스프링 시큐리티의 제어를 받도록 하는 annotation
 public class Securityconfig {
 	
+	
 	   @Bean
 	   public SecurityFilterChain fiteChain(HttpSecurity http) throws Exception {
 	      http
 	      .csrf(csrf -> csrf.disable()) //csrf 인증을 비활성화->리액트, vue 같은 프론트엔+백엔드 구조->불필요
 	      .cors(Customizer.withDefaults()) //cors->활성화
-	        .authorizeHttpRequests(authorize -> authorize
+	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers("/api/auth/signup", "/api/auth/login", "/api/board", "/api/board/**").permitAll()
 	            .anyRequest().authenticated()
 	        )
 	        .formLogin(login -> login //아이디와 비밀번호 확인은 여기서
-	            .loginPage("/api/auth/login") //로그인 요청 url
+	            .loginProcessingUrl("/api/auth/login") //로그인 요청 url
 	            .usernameParameter("username")
 	            .passwordParameter("password")
 	            //로그인이 성공시 -> ok -> 200

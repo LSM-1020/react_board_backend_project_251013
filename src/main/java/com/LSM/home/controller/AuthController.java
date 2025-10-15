@@ -48,7 +48,7 @@ public class AuthController {
 	@PostMapping("/signup") //validation적용
 	public ResponseEntity<?> signup(@Valid @RequestBody SiteUserDto siteUserDto, BindingResult bindingResult) { //?를 써서 어떤 타입이던 반환되도록
 		if(bindingResult.hasErrors()) { //참이면 에러
-			Map<String, String> errors = new HashMap<>();
+			Map<String, String> errors = new HashMap<>(); //map으로 만들어야 프론트전달 가능
 			bindingResult.getFieldErrors().forEach(
 				err -> {
 					errors.put(err.getField(),err.getDefaultMessage());

@@ -25,7 +25,7 @@ public class Securityconfig {
 	
 	
 	   @Bean
-	   public SecurityFilterChain fiteChain(HttpSecurity http) throws Exception {
+	   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	      http
 	      .csrf(csrf -> csrf.disable()) //csrf 인증을 비활성화->리액트, vue 같은 프론트엔+백엔드 구조->불필요
 	      .cors(Customizer.withDefaults()) //cors->활성화

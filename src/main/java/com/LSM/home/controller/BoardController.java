@@ -76,7 +76,7 @@ public class BoardController {
 		pagingResponse.put("posts",boardPage.getContent() );//페이징된 현재 페이지에 해당하는 게시글 리스트 10개
 		pagingResponse.put("currentPage",boardPage.getNumber() );//현재 페이지 번호
 		pagingResponse.put("totalPages",boardPage.getTotalPages() );//모든 페이지 수
-		pagingResponse.put("items",boardPage.getTotalElements() ); //게시판 모든 글 수 (long)
+		pagingResponse.put("totalItems",boardPage.getTotalElements() ); //게시판 모든 글 수 (long)
 		
 		
 		return ResponseEntity.ok(pagingResponse);

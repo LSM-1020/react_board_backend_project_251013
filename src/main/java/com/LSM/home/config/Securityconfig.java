@@ -30,7 +30,7 @@ public class Securityconfig {
 	      .csrf(csrf -> csrf.disable()) //csrf 인증을 비활성화->리액트, vue 같은 프론트엔+백엔드 구조->불필요
 	      .cors(Customizer.withDefaults()) //cors->활성화
 	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/api/auth/signup", "/api/auth/login", "/api/board", "/api/board/**").permitAll()
+	            .requestMatchers("/api/auth/signup", "/api/auth/login", "/api/board","/api/comments","api/comments/**", "/api/board/**").permitAll()
 	            .anyRequest().authenticated()
 	        )
 	        .formLogin(login -> login //아이디와 비밀번호 확인은 여기서

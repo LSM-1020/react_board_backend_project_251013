@@ -83,8 +83,6 @@ public class BoardController {
 	}
 	
 	
-	
-	
 	//게시글 작성
 //	@PostMapping
 //	public ResponseEntity<?> write(@RequestBody Board req, Authentication auth) {
